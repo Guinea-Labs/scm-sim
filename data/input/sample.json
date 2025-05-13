@@ -1,0 +1,94 @@
+{
+    "nodes": [
+    {
+      "name": "Material Requirement Creation",
+      "queues": 1,
+      "processing_time": 2,
+      "connected_nodes": ["Material Planning"]
+    },
+    {
+      "name": "Material Planning",
+      "queues": 2,
+      "processing_time": 3,
+      "connected_nodes": ["Purchase Requisition", "Production Planning"]
+    },
+    {
+      "name": "Purchase Requisition",
+      "queues": 1,
+      "processing_time": 1,
+      "connected_nodes": ["Purchase Order"]
+    },
+    {
+      "name": "Production Planning",
+      "queues": 3,
+      "processing_time": 4,
+      "connected_nodes": ["Production Order"]
+    },
+    {
+      "name": "Purchase Order",
+      "queues": 2,
+      "processing_time": 5,
+      "connected_nodes": ["Goods Receipt"]
+    },
+    {
+      "name": "Production Order",
+      "queues": 2,
+      "processing_time": 6,
+      "connected_nodes": ["Goods Receipt"]
+    },
+    {
+      "name": "Goods Receipt",
+      "queues": 1,
+      "processing_time": 2,
+      "connected_nodes": ["Material Enters Warehouse"]
+    },
+    {
+      "name": "Material Enters Warehouse",
+      "queues": 1,
+      "processing_time": 0,
+      "connected_nodes": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "Material Requirement Creation",
+      "to": "Material Planning",
+      "probability": 1.0
+    },
+    {
+      "from": "Material Planning",
+      "to": "Purchase Requisition",
+      "probability": 0.6
+    },
+    {
+      "from": "Material Planning",
+      "to": "Production Planning",
+      "probability": 0.4
+    },
+    {
+      "from": "Purchase Requisition",
+      "to": "Purchase Order",
+      "probability": 1.0
+    },
+    {
+      "from": "Production Planning",
+      "to": "Production Order",
+      "probability": 1.0
+    },
+    {
+      "from": "Purchase Order",
+      "to": "Goods Receipt",
+      "probability": 1.0
+    },
+    {
+      "from": "Production Order",
+      "to": "Goods Receipt",
+      "probability": 1.0
+    },
+    {
+      "from": "Goods Receipt",
+      "to": "Material Enters Warehouse",
+      "probability": 1.0
+    }
+  ]
+}
